@@ -1,0 +1,31 @@
+<aside class="user-profile-resumed">
+	<div class="user-image">
+		<img src="">
+	</div>
+	<h3 class="user-name"><%= @user.name %></h3>
+
+	<div class="user-social-info">
+		<h4>
+			<i class="fa fa-users"></i> 
+			<%= @user.friends.size > 1 ? "#{@user.friends.size} amigos" : "#{@user.friends.size} amigo" %>
+		</h4>
+		<h4>
+			<i class="fa fa-align-left"></i> 
+			<%= @user.posts.size > 1 ? "#{@user.posts.size} postagens" : "#{@user.posts.size} postagem" %>
+		</h4>
+	</div>
+	<div class="user-social-actions">
+		<% if current_user.friend_ids.include?(@user.id) %>
+			<%= link_to "Deixar de seguir", network_friendship_path(@user.id), :class => 'btn btn-danger btn-block', :method => :delete %>
+		<% else %>
+			<% if current_user.id != @user.id %>
+				<%= form_for(Friendship.new, :url => network_friendships_path) do |f| %>
+					<%= f.hidden_field :friend_id, :value => @user.id %>
+					<button type="submit" class="btn btn-success btn-block">
+						Seguir
+					</button>
+				<% end %>
+			<% end %>
+		<% end %>
+	</div>
+</aside>

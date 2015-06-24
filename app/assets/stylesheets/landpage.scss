@@ -1,0 +1,16 @@
+@import "colors";
+
+.landpage-bg {
+	color: $white;
+  background: $main-color;
+  border-top: 1px solid $main-color-hover;
+  margin: 20px 0px;
+  padding: 20px 0px 30px;
+  a{
+  	color: $white;
+  	&:hover,
+  	&:active{
+  		color: $white-hover;
+  	}
+  }
+}

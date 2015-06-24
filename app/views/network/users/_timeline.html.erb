@@ -1,0 +1,52 @@
+<ul class="timeline">
+  <% @activities.each do |activity| %>
+    <li>
+      <% if activity.trackable %>
+        <a href="<%= network_user_path(activity.trackable.user.id) %>" class="timeline-photo disabled">
+          <img src="">
+        </a>
+      <% else %>
+        <div class="timeline-photo disabled">
+          <img src="">
+        </div>
+      <% end %>
+      
+      <div class="timeline-panel">
+        <div class="timeline-heading">
+          <p>
+            <small class="text-muted">
+              <i class="glyphicon glyphicon-time"></i> 
+              <%= distance_of_time_in_words(Time.zone.now, activity.created_at) %> 
+              - 
+              <%= activity.trackable ? activity.trackable.user.name : '' %>
+            </small>
+          </p>
+        </div>
+        <div class="timeline-body">
+          <%= render_activity activity %>
+        </div>
+        <% if activity.trackable %>
+          <div class="timeline-footer">
+            <form class="">
+              <div class="form-group" style="display:inline;">
+                <div class="input-group" style="display:table;">
+                  <input type="text" class="form-control" placeholder="Comentar postagem...">
+                  <span class="input-group-btn" style="width: 1%;">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-comment"></i></button>
+
+                    <% if activity.trackable.user_id == current_user.id %>
+                      <%= link_to network_post_path(activity.trackable.id), :class => 'btn btn-danger', :method => :delete do %>
+                        <i class="fa fa-trash"></i>
+                      <% end %>
+                    <% end %>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>
+        <% end %>
+        
+      </div>
+    </li>
+  <% end %>
+</ul>

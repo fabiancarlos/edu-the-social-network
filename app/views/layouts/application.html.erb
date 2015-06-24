@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="MEOAPP - Sistemas e aplicativos">
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <title>TheSocialNetwork</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="landpage-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 col-md-8 col-sm-12 col-xs-12">
+        <h1>The Social Network <i class="fa fa-globe"></i></h1>
+        <p class="lead">This is a social network for only education purpose.</p>
+      </div>
+      <div class="col-4 col-md-4 col-sm-12 col-xs-12">
+        <%= notice ? "<p class='notice'>#{notice}</p>".html_safe : '' %>
+        <%= alert ? "<p class='alert'>#{alert}</p>".html_safe : '' %>
+
+        <%= yield %>
+      </div>
+  </div>
+</div>
+
+</body>
+</html>
